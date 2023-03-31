@@ -1,11 +1,13 @@
+import Header from "./Header/Header";
 import styles from "./MainLayout.module.scss";
+
 
 
 function MainLayout({ children }) {
     return (
       <div className={styles.wrapper}>
         <div className={styles.header}>
-          {/* <Header /> */}
+          <Header />
         </div>
         <div className={styles.body}>
           {/* <div className={styles.sidebar}>{<Sidebar />}</div> */}
