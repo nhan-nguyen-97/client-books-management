@@ -1,15 +1,16 @@
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 import { Form, Input, Button, Select, InputNumber, Radio } from "antd";
-import { ToastContainer, toast } from "react-toastify";
+
 import "react-toastify/dist/ReactToastify.css";
 
 import styles from "./Register.module.scss";
+import { registerCustomerStart } from "../../redux/actions/customerActions";
 
 function Register() {
-  // const navigate = useNavigate();
-  // const dispatch = useDispatch();
+
+  const dispatch = useDispatch();
 
   const initialValues = {
     username: "",
@@ -21,10 +22,11 @@ function Register() {
     position: "customer",
   };
   const [data, setData] = useState(initialValues);
-  console.log(data);
 
   const handleRegisterClick = () => {
-    console.log("Thực hiện Register");
+    if (data.username && data.password && data.fullName) {
+      dispatch(registerCustomerStart(data));
+    }
   };
 
   return (
@@ -118,16 +120,16 @@ function Register() {
               ></Input>
             </Form.Item>
             <Form.Item label="Gender" name="gender">
-            <Radio.Group
-              value={data.gender}
-              onChange={(e) => {
-                setData({ ...data, gender: e.target.value });
-              }}
-            >
-              <Radio value="male">Male</Radio>
-              <Radio value="female">Female</Radio>
-            </Radio.Group>
-          </Form.Item>
+              <Radio.Group
+                value={data.gender}
+                onChange={(e) => {
+                  setData({ ...data, gender: e.target.value });
+                }}
+              >
+                <Radio value="male">Male</Radio>
+                <Radio value="female">Female</Radio>
+              </Radio.Group>
+            </Form.Item>
             <Form.Item label="Position" name="position">
               <Select
                 style={{
@@ -165,7 +167,6 @@ function Register() {
           </div>
         </div>
       </div>
-      <ToastContainer autoClose={2000} />
     </div>
   );
 }

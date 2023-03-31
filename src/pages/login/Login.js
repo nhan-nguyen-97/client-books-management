@@ -6,24 +6,20 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 import styles from "./Login.module.scss";
+import axios from "axios";
 // import { loadBooksError } from "../../redux/actions/bookActions";
 // import { loadUsersStart } from "../../redux/actions/usersAction";
 
 function Login() {
   // const navigate = useNavigate();
   // const dispatch = useDispatch();
-
-  const [data, setData] = useState({
-    username: "",
-    password: "",
-    position: "customer",
-  });
-  console.log(data);
   const initialValues = {
     username: "",
     password: "",
-    position: "customer",
+    position: "admin",
   };
+
+  const [data, setData] = useState(initialValues);
   // const { users } = useSelector((state) => state.users);
 
   // useEffect(() => {
@@ -32,6 +28,7 @@ function Login() {
 
   const handleLoginClick = () => {
     console.log("Thực hiện Login");
+    // axios.post("http://localhost:5000/customers/register", data);
     // if (username && password) {
     //   const userPass = users.find((user) => {
     //     return username === user.username && password === user.password;
@@ -89,10 +86,10 @@ function Login() {
                 }}
                 onChange={(value) => setData({ ...data, position: value })}
                 options={[
-                  {
-                    value: "customer",
-                    label: "Customer",
-                  },
+                  // {
+                  //   value: "customer",
+                  //   label: "Customer",
+                  // },
                   {
                     value: "admin",
                     label: "Admin",
@@ -111,7 +108,10 @@ function Login() {
           </Form>
           <div className={styles.footer}>
             <p>
-              You don't have an account? <Link to="/register" className={styles.link}>Please Register</Link>
+              You don't have an account?{" "}
+              <Link to="/register" className={styles.link}>
+                Please Register
+              </Link>
             </p>
           </div>
         </div>

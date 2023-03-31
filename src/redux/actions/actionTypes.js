@@ -36,6 +36,11 @@ export const DELETE_USER_START = "delete_user_start";
 export const DELETE_USER_SUCCESS = "delete_user_success";
 export const DELETE_USER_ERROR = "delete_user_error";
 
+//Customers
+export const REGISTER_CUSTOMER_START = "register_customer_start";
+export const REGISTER_CUSTOMER_SUCCESS = "register_customer_success";
+export const REGISTER_CUSTOMER_ERROR = "register_customer_error";
+
 //Authors
 export const LOAD_AUTHORS_START = "load_authors_start";
 export const LOAD_AUTHORS_SUCCESS = "load_authors_success";
