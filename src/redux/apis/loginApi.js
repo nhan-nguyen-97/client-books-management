@@ -4,4 +4,4 @@ import { baseURL } from "./config";
 
 axios.defaults.baseURL = baseURL;
 
-export const login = async (info) => await axios.post("/login", info);
+export const loginAdmin = async (info) => await axios.post("/users/login", info);

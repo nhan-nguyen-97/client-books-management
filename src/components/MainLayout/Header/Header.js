@@ -12,22 +12,21 @@ import {
 
 function Header() {
   const navigate = useNavigate();
-  const userStorage = localStorage.getItem("user_profile");
-  const userInfo = JSON.parse(userStorage);
+  const userStorage = JSON.parse(localStorage.getItem("user_profile"));
 
   const handleLogout = () => {
-    localStorage.removeItem("id_token");
     localStorage.removeItem("user_profile");
+    localStorage.removeItem("token");
     navigate("/login");
   };
 
   const handleToProfilePage = () => {
-    navigate("/profile");
+    navigate("/dashboard/profile");
   };
 
   const items = [
     {
-      key: "/profile",
+      key: "/dashboard/profile",
       label: (
         <p onClick={handleToProfilePage}>
           <FontAwesomeIcon icon={faUser} /> Profile
@@ -47,10 +46,10 @@ function Header() {
     <div className={styles.wrapper}>
       <img className={styles.logoItem} src={logo} alt="Logo" />
       <div className={styles.userAction}>
-        <p>{userInfo.fullName}</p>
+        <p>{userStorage.fullName}</p>
         <Dropdown menu={{ items }} placement="bottomLeft" arrow>
           <img
-            src={userInfo.avatar ? `${userInfo.avatar}` : `${noAvatar}`}
+            src={userStorage.avatar || `${noAvatar}`}
             className={styles.avatar}
             alt="Avatar"
           ></img>

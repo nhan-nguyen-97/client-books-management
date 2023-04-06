@@ -1,17 +1,17 @@
 import { combineReducers } from "redux";
 
-// import authorsReducer from "./authorsReducer";
+import authorsReducer from "./authorsReducer";
 import booksReducer from "./booksReducer";
 import customersReducer from "./customersReducer";
-// import userByIdReducer from "./userByIdReducer";
-// import usersReducer from "./usersReducer";
+import usersReducer from "../users/reducer";
+import authReducer from "../auth/reducer";
 
 const rootReducer = combineReducers({
-  // userCurrent: userByIdReducer,
-  // users: usersReducer,
+  userCurrent: authReducer,
   books: booksReducer,
   customers: customersReducer,
-  // authors: authorsReducer,
+  authors: authorsReducer,
+  users: usersReducer,
 });
 
 export default rootReducer;

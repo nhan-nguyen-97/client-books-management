@@ -1,18 +1,14 @@
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { Form, Input, Button, Select } from "antd";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 
 import styles from "./Login.module.scss";
-import axios from "axios";
-// import { loadBooksError } from "../../redux/actions/bookActions";
-// import { loadUsersStart } from "../../redux/actions/usersAction";
+import { loginUserStart } from "../../redux/auth/actions";
 
 function Login() {
-  // const navigate = useNavigate();
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const initialValues = {
     username: "",
     password: "",
@@ -20,27 +16,18 @@ function Login() {
   };
 
   const [data, setData] = useState(initialValues);
-  // const { users } = useSelector((state) => state.users);
-
-  // useEffect(() => {
-  //   dispatch(loadUsersStart());
-  // }, [dispatch]);
+  const [position, setPosition] = useState("admin");
 
   const handleLoginClick = () => {
-    console.log("Thực hiện Login");
-    // axios.post("http://localhost:5000/customers/register", data);
-    // if (username && password) {
-    //   const userPass = users.find((user) => {
-    //     return username === user.username && password === user.password;
-    //   });
-    //   if (userPass) {
-    //     localStorage.setItem("id_token", `${userPass.id}`);
-    //     localStorage.setItem("user_profile", JSON.stringify(userPass));
-    //     navigate("/");
-    //   } else {
-    //     toast.error("Username or Password do not match");
-    //   }
-    // }
+    if (data.username && data.password) {
+      if (position === "admin") {
+        dispatch(
+          loginUserStart(data, () => {
+            navigate("/dashboard");
+          })
+        );
+      }
+    }
   };
 
   return (
@@ -84,7 +71,7 @@ function Login() {
                 style={{
                   width: "100%",
                 }}
-                onChange={(value) => setData({ ...data, position: value })}
+                onChange={(value) => setPosition(value)}
                 options={[
                   // {
                   //   value: "customer",
@@ -116,7 +103,6 @@ function Login() {
           </div>
         </div>
       </div>
-      <ToastContainer autoClose={2000} />
     </div>
   );
 }

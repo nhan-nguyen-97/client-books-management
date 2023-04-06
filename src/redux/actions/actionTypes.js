@@ -16,6 +16,10 @@ export const DELETE_BOOK_SUCCESS = "delete_book_success";
 export const DELETE_BOOK_ERROR = "delete_book_error";
 
 //Users
+export const LOGIN_USER_START = "login_user_start";
+export const LOGIN_USER_SUCCESS = "login_user_success";
+export const LOGIN_USER_ERROR = "login_user_error";
+
 export const LOAD_USERS_START = "load_users_start";
 export const LOAD_USERS_SUCCESS = "load_users_success";
 export const LOAD_USERS_ERROR = "load_users_error";

@@ -1,5 +1,4 @@
 import { call, delay, fork, put, takeLatest } from "redux-saga/effects";
-import { redirect } from "react-router-dom";
 
 import * as types from "../actions/actionTypes";
 import {
@@ -9,6 +8,7 @@ import {
 import { register } from "../apis/customerApis";
 import { ToastError, ToastSuccess } from "../../components/Toast";
 
+
 function* onRegisterCustomerStartAsync({ payload }) {
   try {
     const response = yield call(register, payload);
@@ -16,7 +16,6 @@ function* onRegisterCustomerStartAsync({ payload }) {
       yield delay(200);
       yield put(registerCustomerSuccess(response.data));
       ToastSuccess(response.data);
-      return redirect("/login");
     }
   } catch (error) {
     yield put(registerCustomerError(error.response.data));

@@ -1,4 +1,7 @@
-import Header from "./Header/Header";
+import Header from "./Header";
+import MainContent from "./MainContent";
+import Sidebar from "./Sidebar";
+import Footer from "./Footer";
 import styles from "./MainLayout.module.scss";
 
 
@@ -10,13 +13,13 @@ function MainLayout({ children }) {
           <Header />
         </div>
         <div className={styles.body}>
-          {/* <div className={styles.sidebar}>{<Sidebar />}</div> */}
+          <div className={styles.sidebar}>{<Sidebar />}</div>
           <div className={styles.container}>
             <div className={styles.mainContent}>
-              {/* <MainContent>{children}</MainContent> */}
+              <MainContent>{children}</MainContent>
             </div>
             <div className={styles.footer}>
-              {/* <Footer /> */}
+              <Footer />
             </div>
           </div>
         </div>

@@ -9,7 +9,6 @@ import styles from "./Register.module.scss";
 import { registerCustomerStart } from "../../redux/actions/customerActions";
 
 function Register() {
-
   const dispatch = useDispatch();
 
   const initialValues = {
@@ -46,7 +45,11 @@ function Register() {
               name="username"
               required
               rules={[
-                { required: true, message: "Please enter an Username" },
+                {
+                  required: true,
+                  whitespace: true,
+                  message: "Please enter an Username",
+                },
                 {
                   min: 6,
                   max: 50,
@@ -57,7 +60,9 @@ function Register() {
               <Input
                 value={data.username}
                 placeholder="Enter an Username"
-                onChange={(e) => setData({ ...data, username: e.target.value })}
+                onChange={(e) =>
+                  setData({ ...data, username: e.target.value.trim() })
+                }
               ></Input>
             </Form.Item>
             <Form.Item
@@ -65,7 +70,11 @@ function Register() {
               name="password"
               required
               rules={[
-                { required: true, message: "Please enter a Password" },
+                {
+                  required: true,
+                  whitespaceL: true,
+                  message: "Please enter a Password",
+                },
                 {
                   min: 6,
                   max: 100,
@@ -83,7 +92,11 @@ function Register() {
               name="fullName"
               required
               rules={[
-                { required: true, message: "Please enter your name" },
+                {
+                  required: true,
+                  whitespace: true,
+                  message: "Please enter your name",
+                },
                 {
                   min: 1,
                   max: 100,
@@ -94,7 +107,7 @@ function Register() {
               <Input
                 value={data.fullName}
                 placeholder="Enter your Name"
-                onChange={(e) => setData({ ...data, fullName: e.target.value })}
+                onChange={(e) => setData({ ...data, fullName: e.target.value.trim() })}
               ></Input>
             </Form.Item>
             <Form.Item name="phoneNumber">
