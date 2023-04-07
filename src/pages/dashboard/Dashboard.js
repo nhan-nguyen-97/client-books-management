@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+// import React, { useEffect } from "react";
+// import { useDispatch, useSelector } from "react-redux";
 
 import MainContent from "../../components/MainLayout/MainContent";
 import DashboardCard from "./DashboardCard/DashboardCard";
@@ -14,7 +14,7 @@ import { PrivateRoute } from "../../common/PrivateRoute";
 
 
 function Dashboard() {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   // const { books } = useSelector((state) => state.books);
   // const { authors } = useSelector((state) => state.authors);

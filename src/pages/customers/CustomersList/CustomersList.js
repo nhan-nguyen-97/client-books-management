@@ -3,6 +3,7 @@ import moment from "moment";
 
 // import DeleteCustomer from "../DeleteCustomer";
 // import EditCustomer from "../EditCustomer";
+import styles from "./CustomersList.module.scss";
 
 const { Column } = Table;
 
@@ -15,16 +16,18 @@ function CustomersList({ listCustomers }) {
       }}
       rowKey="_id"
     >
-      <Column title="Name" dataIndex="name" key="name" />
-      <Column title="Author" dataIndex="author" key="author" />
+      <Column title="Username" dataIndex="username" key="username" />
+
+      <Column title="Name" dataIndex="fullName" key="fullName" />
+      <Column title="Phone" dataIndex="phoneNumber" key="phoneNumber" />
       <Column
-        title="Published"
-        render={(_, record) =>
-          record.published && moment(record.published).format("YYYY")
-        }
-        key="published"
-      />
-      <Column title="Price" dataIndex="price" key="price" />
+        className={styles.gender}
+        title="Gender"
+        dataIndex="gender"
+        key="gender"
+      ></Column>
+      <Column title="Email" dataIndex="email" key="email" />
+
       <Column
         title="Created at"
         render={(_, record) =>

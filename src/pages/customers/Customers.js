@@ -1,16 +1,19 @@
-// import { useEffect } from "react";
-// import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 import { PrivateRoute } from "../../common/PrivateRoute";
 import MainLayout from "../../components/MainLayout";
 import MainContent from "../../components/MainLayout/MainContent";
 import styles from "./Customers.module.scss";
+import { loadCustomersStart } from "../../redux/customers/actions";
+import CustomersList from "./CustomersList";
 
 function Customers() {
-  // const dispatch = useDispatch();
-//   useEffect(() => {
-//     dispatch(loadBooksStart());
-//   }, [dispatch]);
+  const dispatch = useDispatch();
+  const { customers } = useSelector((state) => state.customers);
+  useEffect(() => {
+    dispatch(loadCustomersStart());
+  }, [dispatch]);
   return (
     <PrivateRoute>
       <MainLayout>
@@ -19,8 +22,8 @@ function Customers() {
             <div className={styles.groupBtn}>
               {/* <AddBook listAuthors={authors} /> */}
             </div>
-            <div className={styles.booksList}>
-              {/* <BooksList listBooks={books} listAuthors={authors} /> */}
+            <div className={styles.customersList}>
+              <CustomersList listCustomers={customers} />
             </div>
           </div>
         </MainContent>

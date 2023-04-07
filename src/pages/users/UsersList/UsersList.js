@@ -53,7 +53,7 @@ function UsersList({ listUsers }) {
         render={(_, record) => (
           <Space size="middle">
             <EditUser userData={record} />
-            <DeleteUser id={record._id} />
+            {record.username !== "admin" && <DeleteUser id={record._id} />}
           </Space>
         )}
       />
