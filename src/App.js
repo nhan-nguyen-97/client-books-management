@@ -6,13 +6,13 @@ import "react-toastify/dist/ReactToastify.css";
 import GlobalStyles from "./components/GlobalStyles";
 import Login from "./pages/login";
 import Register from "./pages/register";
-import Books from "./pages/books";
+import Books from "./pages/AdminTools/books";
 // import HomeClient from "./pages/homeClient";
-import Customers from "./pages/customers";
-import Dashboard from "./pages/dashboard";
-import Authors from "./pages/authors";
-import Profile from "./pages/adminProfile/Profile";
-import Users from "./pages/users";
+import Customers from "./pages/AdminTools/customers";
+import Dashboard from "./pages/AdminTools/dashboard";
+import Authors from "./pages/AdminTools/authors";
+import Profile from "./pages/AdminTools/profile";
+import Users from "./pages/AdminTools/users";
 
 function App() {
   return (

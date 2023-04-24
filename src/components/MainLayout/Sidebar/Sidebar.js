@@ -19,14 +19,14 @@ const items = [
     icon: <FontAwesomeIcon icon={faChartLine} />,
   },
   {
-    label: "Books",
-    key: "/dashboard/books",
-    icon: <FontAwesomeIcon icon={faBookOpen} />,
-  },
-  {
     label: "Customers",
     key: "/dashboard/customers",
     icon: <FontAwesomeIcon icon={faUsers} />,
+  },
+  {
+    label: "Books",
+    key: "/dashboard/books",
+    icon: <FontAwesomeIcon icon={faBookOpen} />,
   },
   {
     label: "Authors",
