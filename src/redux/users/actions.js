@@ -43,6 +43,20 @@ export const updateUserError = (error) => ({
   payload: error,
 });
 
+export const resetPasswordStart = (data) => ({
+  type: types.RESET_PASSWORD_START,
+  payload: data,
+});
+
+export const resetPasswordSuccess = () => ({
+  type: types.RESET_PASSWORD_SUCCESS,
+});
+
+export const resetPasswordError = (error) => ({
+  type: types.RESET_PASSWORD_SUCCESS,
+  payload: error,
+});
+
 export const deleteUserStart = (id) => ({
   type: types.DELETE_USER_START,
   payload: id,

@@ -1,8 +1,8 @@
 import { Space, Table } from "antd";
 import moment from "moment";
 
-// import DeleteCustomer from "../DeleteCustomer";
-// import EditCustomer from "../EditCustomer";
+import DeleteCustomer from "./DeleteCustomer";
+import EditCustomer from "./EditCustomer";
 import styles from "./CustomersList.module.scss";
 
 const { Column } = Table;
@@ -49,8 +49,8 @@ function CustomersList({ listCustomers }) {
         key="action"
         render={(_, record) => (
           <Space size="middle">
-            {/* <EditBook bookData={record} listAuthors={listAuthors} /> */}
-            {/* <DeleteBook id={record._id} /> */}
+            <EditCustomer customerData={record} />
+            <DeleteCustomer id={record._id} />
           </Space>
         )}
       />

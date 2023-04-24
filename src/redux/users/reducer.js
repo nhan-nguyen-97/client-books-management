@@ -11,6 +11,7 @@ const usersReducer = (state = initialState, action) => {
     case types.LOAD_USERS_START:
     case types.CREATE_USER_START:
     case types.UPDATE_USER_START:
+    case types.RESET_PASSWORD_START:
     case types.DELETE_USER_START:
       return {
         ...state,
@@ -24,6 +25,7 @@ const usersReducer = (state = initialState, action) => {
       };
     case types.CREATE_USER_SUCCESS:
     case types.UPDATE_USER_SUCCESS:
+    case types.RESET_PASSWORD_SUCCESS:
       return {
         ...state,
         loading: false,
@@ -37,6 +39,7 @@ const usersReducer = (state = initialState, action) => {
     case types.LOAD_USERS_ERROR:
     case types.CREATE_USER_ERROR:
     case types.UPDATE_USER_ERROR:
+    case types.RESET_PASSWORD_ERROR:
     case types.DELETE_USER_ERROR:
       return {
         ...state,

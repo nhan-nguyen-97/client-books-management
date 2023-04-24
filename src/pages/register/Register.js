@@ -1,16 +1,14 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Form, Input, Button, Select, InputNumber, Radio } from "antd";
 
-import "react-toastify/dist/ReactToastify.css";
-
 import styles from "./Register.module.scss";
-import { registerCustomerStart } from "../../redux/actions/customerActions";
+import { registerCustomerStart } from "../../redux/customers/actions";
 
 function Register() {
   const dispatch = useDispatch();
-
+  const navigate = useNavigate();
   const initialValues = {
     username: "",
     password: "",
@@ -24,7 +22,11 @@ function Register() {
 
   const handleRegisterClick = () => {
     if (data.username && data.password && data.fullName) {
-      dispatch(registerCustomerStart(data));
+      dispatch(
+        registerCustomerStart(data, () => {
+          navigate("/login");
+        })
+      );
     }
   };
 
@@ -107,7 +109,9 @@ function Register() {
               <Input
                 value={data.fullName}
                 placeholder="Enter your Name"
-                onChange={(e) => setData({ ...data, fullName: e.target.value.trim() })}
+                onChange={(e) =>
+                  setData({ ...data, fullName: e.target.value.trim() })
+                }
               ></Input>
             </Form.Item>
             <Form.Item name="phoneNumber">

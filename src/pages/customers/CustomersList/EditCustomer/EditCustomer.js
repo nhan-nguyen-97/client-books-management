@@ -1,82 +1,56 @@
 import { Fragment, useState } from "react";
 import { useDispatch } from "react-redux";
-import {
-  Button,
-  Modal,
-  Input,
-  Form,
-  InputNumber,
-  DatePicker,
-  Select,
-} from "antd";
+import { Button, Modal, Input, Form, Radio, InputNumber } from "antd";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenToSquare } from "@fortawesome/free-regular-svg-icons";
-import dayjs from "dayjs";
-import moment from "moment";
-import customParseFormat from "dayjs/plugin/customParseFormat";
 
-import styles from "./EditBook.module.scss";
-import { updateBookStart } from "../../../redux/books/actions";
-dayjs.extend(customParseFormat);
+import styles from "./EditAuthor.module.scss";
+import { updateCustomerStart } from "../../../../redux/customers/actions";
 
-function EditBook({ bookData, listAuthors }) {
-  const dateFormat = "YYYY";
+function EditCustomer({ customerData }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [form] = Form.useForm();
   const dispatch = useDispatch();
+  const [form] = Form.useForm();
   const initialValues = {
-    name: bookData.name,
-    price: bookData.price,
-    author: bookData.author,
-    published:
-      bookData.published !== null
-        ? dayjs(`${moment(bookData.published).format(dateFormat)}`, dateFormat)
-        : "",
+    fullName: customerData.fullName,
+    gender: customerData.gender,
+    email: customerData.email,
+    phoneNumber: customerData.phoneNumber,
   };
+  const { _id: id } = customerData;
   const [data, setData] = useState(initialValues);
-  const id = bookData._id;
 
   const showModal = () => {
     setIsModalOpen(true);
     form.setFieldsValue(initialValues);
   };
-
-  // Get data Authors for Add new Book
-  const options = [];
-  listAuthors.map((author) => {
-    options.push({
-      value: author.name,
-      label: author.name,
-    });
-    return options;
-  });
-
   const handleSubmit = () => {
-    if (data.name) {
-      console.log("Update successfully");
-      dispatch(updateBookStart({ id, data }));
+    if (data.fullName) {
+      dispatch(updateCustomerStart({ id, data }));
       setIsModalOpen(false);
       form.resetFields();
+      setData(initialValues);
     }
   };
   const handleOk = () => {
     setIsModalOpen(false);
+    form.resetFields();
   };
   const handleCancel = () => {
-    setIsModalOpen(false);
     setData(initialValues);
+    setIsModalOpen(false);
   };
 
   return (
     <Fragment>
       <FontAwesomeIcon
+        onClick={showModal}
         className={styles.edit}
         icon={faPenToSquare}
-        onClick={showModal}
       />
       <Modal
         forceRender
-        title={`Update ${bookData.name}`}
+        title={`Update Customer ${customerData.fullName}`}
         open={isModalOpen}
         onOk={handleOk}
         onCancel={handleCancel}
@@ -100,49 +74,61 @@ function EditBook({ bookData, listAuthors }) {
         >
           <Form.Item
             label="Name"
-            name="name"
+            name="fullName"
             required
             rules={[
               {
                 required: true,
                 whitespace: true,
-                message: "Enter an Book Name",
+                message: "Please enter your name",
+              },
+              {
+                min: 1,
+                max: 100,
+                message: "Your name must be less than 100 characters",
               },
             ]}
           >
             <Input
-              value={data.name}
+              value={data.fullName}
+              placeholder="Enter your Name"
               onChange={(e) =>
-                setData({ ...data, name: e.target.value.trim() })
+                setData({ ...data, fullName: e.target.value.trim() })
               }
-            />
+            ></Input>
           </Form.Item>
-          <Form.Item label="Price" name={"price"}>
+          <Form.Item label="Phone" name="phoneNumber">
             <InputNumber
-              value={data.price}
-              min={0}
-              max={10000000}
-              step={5000}
-              style={{ width: 275 }}
-              onChange={(value) => setData({ ...data, price: value })}
-            />
+              style={{ width: "100%" }}
+              addonBefore="+84"
+              maxLength={11}
+              step={1}
+              value={data.phoneNumber}
+              stringMode
+              onChange={(value) => setData({ ...data, phoneNumber: value })}
+            ></InputNumber>
           </Form.Item>
-          <Form.Item label="Author" name="author">
-            <Select
-              showSearch
-              options={options}
-              onChange={(value) => setData({ ...data, author: value })}
-            ></Select>
+          <Form.Item
+            label="Email"
+            name="email"
+            rules={[{ type: "email", message: "Email is not valid" }]}
+          >
+            <Input
+              value={data.email}
+              placeholder="Enter your Email"
+              onChange={(e) => setData({ ...data, email: e.target.value })}
+            ></Input>
           </Form.Item>
-          <Form.Item label="Published" name="published">
-            <DatePicker
-              format="YYYY"
-              value={data.published}
-              onChange={(date, dateString) =>
-                setData({ ...data, published: date })
-              }
-              picker="year"
-            />
+          <Form.Item label="Gender" name="gender">
+            <Radio.Group
+              value={data.gender}
+              onChange={(e) => {
+                setData({ ...data, gender: e.target.value });
+              }}
+            >
+              <Radio value="male">Male</Radio>
+              <Radio value="female">Female</Radio>
+            </Radio.Group>
           </Form.Item>
           <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
             <Button type="primary" onClick={handleCancel}>
@@ -170,4 +156,4 @@ function EditBook({ bookData, listAuthors }) {
   );
 }
 
-export default EditBook;
+export default EditCustomer;

@@ -45,3 +45,17 @@ export const updateProfileError = (error) => ({
   type: types.UPDATE_PROFILE_ERROR,
   payload: error,
 });
+
+export const changePasswordStart = (data) => ({
+  type: types.CHANGE_PASSWORD_START,
+  payload: data,
+});
+
+export const changePasswordSuccess = () => ({
+  type: types.CHANGE_PASSWORD_SUCCESS,
+});
+
+export const changePasswordError = (error) => ({
+  type: types.CHANGE_PASSWORD_ERROR,
+  payload: error,
+});

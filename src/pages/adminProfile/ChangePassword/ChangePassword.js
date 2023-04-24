@@ -1,17 +1,14 @@
 import { Fragment, useState } from "react";
-// import { useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Button, Modal, Input, Form } from "antd";
 
-// import {
-//   loadUserByIdStart,
-//   updateUserStart,
-// } from "../../../redux/actions/usersAction";
+import { changePasswordStart } from "../../../redux/auth/actions";
 import styles from "./ChangePassword.module.scss";
 
-function ChangePassword() {
+function ChangePassword({ id }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [form] = Form.useForm();
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const initialValues = {
     currentPassword: "",
     newPassword: "",
@@ -25,21 +22,9 @@ function ChangePassword() {
   };
   const handleSubmit = () => {
     if (data.currentPassword && data.newPassword === data.confirmPassword) {
-      console.log("Success Change");
+      console.log("Success Change", id);
+      dispatch(changePasswordStart({ id, data }));
     }
-    // if (data.currentPassword === userInfo.password) {
-    //   if (data.newPassword === data.confirmPassword) {
-    //     dispatch(updateUserStart({ id, formValues }));
-    //     localStorage.setItem("user_profile", JSON.stringify(formValues));
-    //     setIsModalOpen(false);
-    //     setTimeout(() => {
-    //       dispatch(loadUserByIdStart(userId));
-    //       toast.success("Change password successfully");
-    //     }, 200);
-    //   }
-    // } else {
-    //   toast.error("Current password do not match");
-    // }
   };
   const handleOk = () => {
     setIsModalOpen(false);

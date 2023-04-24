@@ -9,3 +9,9 @@ export const register = async (info) =>
 
 export const loadCustomersApi = async () =>
   await axios.get("/dashboard/customers");
+
+export const updateCustomerApi = async (id, data) =>
+  await axios.put(`/dashboard/customers/update/${id}`, data);
+
+export const deleteCustomerApi = async (id) =>
+  await axios.delete(`/dashboard/customers/delete/${id}`);

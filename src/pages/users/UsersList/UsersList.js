@@ -4,6 +4,7 @@ import moment from "moment";
 import styles from "./UsersList.module.scss";
 import DeleteUser from "../DeleteUser";
 import EditUser from "../EditUser";
+import ResetPassword from "../ResetPassword";
 
 const { Column } = Table;
 
@@ -52,6 +53,7 @@ function UsersList({ listUsers }) {
         key="action"
         render={(_, record) => (
           <Space size="middle">
+            <ResetPassword id={record._id} />
             <EditUser userData={record} />
             {record.username !== "admin" && <DeleteUser id={record._id} />}
           </Space>

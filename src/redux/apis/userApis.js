@@ -23,3 +23,9 @@ export const updateUserApi = async (id, data) =>
 
 export const deleteUserApi = async (id) =>
   await axios.delete(`/dashboard/users/delete/${id}`);
+
+export const changePassword = async (id, data) =>
+  await axios.put(`/dashboard/users/profile/changePassword/${id}`, data);
+
+export const resetPasswordApi = async (id, data) =>
+  await axios.put(`/dashboard/users/resetPassword/${id}`, data);

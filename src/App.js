@@ -7,7 +7,7 @@ import GlobalStyles from "./components/GlobalStyles";
 import Login from "./pages/login";
 import Register from "./pages/register";
 import Books from "./pages/books";
-import HomeClient from "./pages/homeClient";
+// import HomeClient from "./pages/homeClient";
 import Customers from "./pages/customers";
 import Dashboard from "./pages/dashboard";
 import Authors from "./pages/authors";
@@ -27,7 +27,7 @@ function App() {
           <Route path="/dashboard/users" element={<Users />}></Route>
           <Route path="/dashboard/profile" element={<Profile />}></Route>
           <Route path="/dashboard" element={<Dashboard />}></Route>
-          <Route path="/" element={<HomeClient />}></Route>
+          {/* <Route path="/" element={<HomeClient />}></Route> */}
         </Routes>
       </GlobalStyles>
       <ToastContainer autoClose={2000} />

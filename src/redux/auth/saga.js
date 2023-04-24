@@ -2,6 +2,8 @@ import { call, fork, put, take, takeLatest } from "redux-saga/effects";
 
 import * as types from "./actionTypes";
 import {
+  changePasswordError,
+  changePasswordSuccess,
   loadProfileError,
   loadProfileSuccess,
   loginUserError,
@@ -9,7 +11,12 @@ import {
   updateProfileError,
   updateProfileSuccess,
 } from "./actions";
-import { loadProfile, login, updateProfile } from "../apis/userApis";
+import {
+  changePassword,
+  loadProfile,
+  login,
+  updateProfile,
+} from "../apis/userApis";
 import { ToastError, ToastSuccess } from "../../components/Toast";
 
 function* onLoginUserStartAsync({ payload, callback }) {
@@ -71,8 +78,26 @@ function* onUpdateProfile() {
   yield takeLatest(types.UPDATE_PROFILE_START, onUpdateProfileStartAsync);
 }
 
+function* onChangePasswordStartAsync({ payload: { id, data } }) {
+  try {
+    const response = yield call(changePassword, id, data);
+    if (response.status === 200) {
+      yield put(changePasswordSuccess());
+      ToastSuccess(response.data);
+    }
+  } catch (error) {
+    yield put(changePasswordError(error.response.data));
+    ToastError(error.response.data);
+  }
+}
+
+function* onChangePassword() {
+  yield takeLatest(types.CHANGE_PASSWORD_START, onChangePasswordStartAsync);
+}
+
 export default function* authSagas() {
   yield fork(onLoginUser);
   yield fork(onLoadProfile);
   yield fork(onUpdateProfile);
+  yield fork(onChangePassword);
 }

@@ -11,6 +11,7 @@ const authReducer = (state = initialState, action) => {
     case types.LOGIN_USER_START:
     case types.LOAD_PROFILE_START:
     case types.UPDATE_PROFILE_START:
+    case types.CHANGE_PASSWORD_START:
       return {
         ...state,
         loading: true,
@@ -23,6 +24,7 @@ const authReducer = (state = initialState, action) => {
         userCurrent: action.payload,
       };
     case types.UPDATE_PROFILE_SUCCESS:
+    case types.CHANGE_PASSWORD_SUCCESS:
       return {
         ...state,
         loading: false,
@@ -30,6 +32,7 @@ const authReducer = (state = initialState, action) => {
     case types.LOGIN_USER_ERROR:
     case types.LOAD_PROFILE_ERROR:
     case types.UPDATE_PROFILE_ERROR:
+    case types.CHANGE_PASSWORD_ERROR:
       return {
         ...state,
         loading: false,

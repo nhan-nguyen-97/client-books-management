@@ -8,7 +8,7 @@ import MainLayout from "../../components/MainLayout";
 import { PrivateRoute } from "../../common/PrivateRoute";
 import UpdateProfile from "./Update";
 import { loadProfileStart } from "../../redux/auth/actions";
-// import ChangePassword from "./ChangePassword";
+import ChangePassword from "./ChangePassword";
 
 function Profile() {
   const { userCurrent } = useSelector((state) => state.userCurrent);
@@ -50,7 +50,7 @@ function Profile() {
                 </Descriptions.Item>
               </Descriptions>
               <UpdateProfile userCurrent={userCurrent} />
-              {/* <ChangePassword /> */}
+              <ChangePassword id={userCurrent._id} />
             </div>
           </div>
         </MainContent>

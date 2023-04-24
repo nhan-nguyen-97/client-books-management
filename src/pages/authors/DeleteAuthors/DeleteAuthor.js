@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashCan } from "@fortawesome/free-regular-svg-icons";
 
 import styles from "./DeleteAuthor.module.scss";
-import { deleteAuthorStart } from "../../../redux/actions/authorActions";
+import { deleteAuthorStart } from "../../../redux/authors/actions";
 
 function DeleteAuthor({ id }) {
   const dispatch = useDispatch();

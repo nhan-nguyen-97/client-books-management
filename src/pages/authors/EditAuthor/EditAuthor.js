@@ -8,7 +8,7 @@ import dayjs from "dayjs";
 import customParseFormat from "dayjs/plugin/customParseFormat";
 
 import styles from "./EditAuthor.module.scss";
-import { updateAuthorStart } from "../../../redux/actions/authorActions";
+import { updateAuthorStart } from "../../../redux/authors/actions";
 
 dayjs.extend(customParseFormat);
 

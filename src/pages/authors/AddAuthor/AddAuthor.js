@@ -2,7 +2,7 @@ import { Fragment, useState } from "react";
 import { Button, Modal, Input, Radio, DatePicker, Form } from "antd";
 import { useDispatch } from "react-redux";
 
-import { createAuthorStart } from "../../../redux/actions/authorActions";
+import { createAuthorStart } from "../../../redux/authors/actions";
 
 function AddAuthor() {
   const [isModalOpen, setIsModalOpen] = useState(false);

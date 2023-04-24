@@ -13,6 +13,7 @@ import {
   getListUsers,
   updateUserApi,
   deleteUserApi,
+  resetPasswordApi,
 } from "../apis/userApis";
 import {
   createUserError,
@@ -22,6 +23,8 @@ import {
   loadUsersSuccess,
   updateUserSuccess,
   updateUserError,
+  resetPasswordSuccess,
+  resetPasswordError,
   deleteUserSuccess,
   deleteUserError,
 } from "./actions";
@@ -80,6 +83,22 @@ function* onUpdateUser() {
   yield takeLatest(types.UPDATE_USER_START, onUpdateUserStartAsync);
 }
 
+function* onResetPasswordStartAsync({ payload: { id, data } }) {
+  try {
+    const response = yield call(resetPasswordApi, id, data);
+    if (response.status === 200) {
+      yield put(resetPasswordSuccess());
+      ToastSuccess(response.data);
+    }
+  } catch (error) {
+    yield put(resetPasswordError(error.response.data));
+  }
+}
+
+function* onResetPassword() {
+  yield takeLatest(types.RESET_PASSWORD_START, onResetPasswordStartAsync);
+}
+
 function* onDeleteUserStartAsync(id) {
   try {
     const response = yield call(deleteUserApi, id);
@@ -104,5 +123,6 @@ export default function* userSagas() {
   yield fork(onLoadUsers);
   yield fork(onCreateUser);
   yield fork(onUpdateUser);
+  yield fork(onResetPassword);
   yield fork(onDeleteUser);
 }

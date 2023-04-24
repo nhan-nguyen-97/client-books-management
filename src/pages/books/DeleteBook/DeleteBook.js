@@ -5,7 +5,7 @@ import { faTrashCan } from "@fortawesome/free-regular-svg-icons";
 import styles from "./DeleteBook.module.scss";
 import {
   deleteBookStart,
-} from "../../../redux/actions/bookActions";
+} from "../../../redux/books/actions";
 
 function DeleteBook({ id }) {
   const dispatch = useDispatch();

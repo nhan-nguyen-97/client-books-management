@@ -5,7 +5,7 @@ import styles from "./Authors.module.scss";
 import MainLayout from "../../components/MainLayout";
 import AddAuthor from "./AddAuthor";
 import AuthorsList from "./AuthorsList";
-import { loadAuthorsStart } from "../../redux/actions/authorActions";
+import { loadAuthorsStart } from "../../redux/authors/actions";
 import MainContent from "../../components/MainLayout/MainContent";
 import { PrivateRoute } from "../../common/PrivateRoute";
 
